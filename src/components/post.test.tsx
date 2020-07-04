@@ -1,21 +1,19 @@
-import React from "react";
-import { ClientContext } from "graphql-hooks";
-import { render, screen, } from "@testing-library/react";
-import { client } from "../GraphQLClient";
-import PostsComponent from "./posts";
+import React from 'react';
+import { ClientContext } from 'graphql-hooks';
+import { render, screen } from '@testing-library/react';
+import PostsComponent from './posts';
+import { client } from '../GraphQLClient';
 
-describe("Post List", () => {
-  it("should show Guillermo", async () => {
-    const GraphQLProvider = ClientContext.Provider;
+describe('Post List', () => {
+  it('should show Guillermo', async () => {
     render(
-      <GraphQLProvider value={client}>
+      <ClientContext.Provider value={client}>
         <PostsComponent />
-      </GraphQLProvider>
+      </ClientContext.Provider>
     );
 
     const items = await screen.findAllByRole('listitem');
- 
+
     expect(items).toHaveLength(1);
-  
   });
 });

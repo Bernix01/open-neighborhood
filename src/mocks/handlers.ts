@@ -1,10 +1,10 @@
 // src/mocks/handlers.js
-import { graphql, rest } from "msw";
+import { graphql, rest } from 'msw';
 
-export const handlers = [
-  rest.post("/login", (req, res, ctx) => {
+const handlers = [
+  rest.post('/login', (req, res, ctx) => {
     // Persist user's authentication in the session
-    sessionStorage.setItem("is-authenticated", "doe");
+    sessionStorage.setItem('is-authenticated', 'doe');
 
     return res(
       // Respond with a 200 status code
@@ -13,8 +13,8 @@ export const handlers = [
   }),
 
   // Handles a "GetUserInfo" query
-  graphql.query("GetUserInfo", (req, res, ctx) => {
-    const authenticatedUser = sessionStorage.getItem("is-authenticated");
+  graphql.query('GetUserInfo', (req, res, ctx) => {
+    const authenticatedUser = sessionStorage.getItem('is-authenticated');
 
     if (!authenticatedUser) {
       // When not authenticated, respond with an error
@@ -22,7 +22,7 @@ export const handlers = [
       return res(
         ctx.errors([
           {
-            message: "Not authenticated",
+            message: 'Not authenticated',
           },
         ])
       );
@@ -33,23 +33,24 @@ export const handlers = [
       ctx.data({
         user: {
           username: authenticatedUser,
-          firstName: "John",
+          firstName: 'John',
         },
       })
     );
   }),
   // Handles a "GetUserInfo" query
-  graphql.query("GetPosts", (req, res, ctx) => {
-    // When authenticated, respond with a query payload
-    return res(
+  graphql.query('GetPosts', (req, res, ctx) =>
+    res(
       ctx.data({
         posts: [
-            {
-                title: "Post 1",
-                author: "Guillermo"
-            }
+          {
+            title: 'Post 1',
+            author: 'Guillermo',
+          },
         ],
       })
-    );
-  }),
+    )
+  ),
 ];
+
+export default handlers;

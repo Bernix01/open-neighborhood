@@ -1,13 +1,22 @@
-import React, { FunctionComponent } from "react";
-import { Grommet, Grid, Box, Button, Nav, Header, Heading, ThemeType } from "grommet";
-import { Ad, Apps, Escalator, User } from "grommet-icons";
+import React from 'react';
+import {
+  Grommet,
+  Grid,
+  Box,
+  Button,
+  Nav,
+  Header,
+  Heading,
+  ThemeType,
+} from 'grommet';
+import { Ad, Apps, Escalator, User } from 'grommet-icons';
 
 const theme: ThemeType = {
   global: {
     colors: {
       background: {
-        light: "#ffffff",
-        dark: "#000000",
+        light: '#ffffff',
+        dark: '#000000',
       },
     },
     font: {
@@ -16,18 +25,18 @@ const theme: ThemeType = {
     },
   },
 };
-const DashoardLayout: FunctionComponent<{ title: string }> = ({
+const DashoardLayout: React.FunctionComponent<{ title: string }> = ({
   title,
   children,
 }) => (
   <Grommet full theme={theme}>
     <Grid
-      columns={["xxsmall", "flex"]}
-      rows={["xxsmall", "flex"]}
+      columns={['xxsmall', 'flex']}
+      rows={['xxsmall', 'flex']}
       areas={[
-        { name: "nav", start: [1, 0], end: [1, 0] },
-        { name: "sidebar", start: [0, 0], end: [0, 1] },
-        { name: "main", start: [1, 1], end: [1, 1] },
+        { name: 'nav', start: [1, 0], end: [1, 0] },
+        { name: 'sidebar', start: [0, 0], end: [0, 1] },
+        { name: 'main', start: [1, 1], end: [1, 1] },
       ]}
       gap="xsmall"
       pad="small"
@@ -36,7 +45,7 @@ const DashoardLayout: FunctionComponent<{ title: string }> = ({
       <Box
         align="start"
         justify="between"
-        background={{ color: "brand" }}
+        background={{ color: 'brand' }}
         gridArea="sidebar"
       >
         <Box align="center" justify="center" fill="vertical">

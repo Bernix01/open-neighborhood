@@ -1,9 +1,9 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
-import PostsComponent from "./components/posts";
-import { ClientContext } from "graphql-hooks";
-import { client } from "./GraphQLClient";
+import React from 'react';
+import { ClientContext } from 'graphql-hooks';
+import logo from './logo.svg';
+import './App.css';
+import PostsComponent from './components/posts';
+import { client } from './GraphQLClient';
 
 function App() {
   return (

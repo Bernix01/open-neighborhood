@@ -1,5 +1,5 @@
-import React, { FunctionComponent } from "react";
-import { useQuery } from "graphql-hooks";
+import React from 'react';
+import { useQuery } from 'graphql-hooks';
 
 const HOMEPAGE_QUERY = `query GetPosts {
     posts {
@@ -8,7 +8,7 @@ const HOMEPAGE_QUERY = `query GetPosts {
     }
   }`;
 
-const PostsComponent: FunctionComponent = () => {
+const PostsComponent: React.FunctionComponent = () => {
   const { loading, error, data } = useQuery<{
     posts: { title: string; author: string }[];
   }>(HOMEPAGE_QUERY, {
@@ -17,16 +17,14 @@ const PostsComponent: FunctionComponent = () => {
     },
   });
 
-  if (loading) return <p>'Loading...'</p>;
-  if (error) return <p>'Something Bad Happened'</p>;
-  console.log(data);
-  
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Something Bad Happened</p>;
+
   return (
     <ul>
       {data.posts.map(({ title, author }) => (
         <li key={title}>{author}</li>
-      )
-      )}
+      ))}
     </ul>
   );
 };
