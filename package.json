@@ -11,9 +11,12 @@
     "@types/react": "^16.9.41",
     "@types/react-dom": "^16.9.8",
     "graphql-hooks": "^4.5.0",
+    "grommet": "^2.14.0",
+    "grommet-icons": "^4.4.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
+    "styled-components": "^5.1.1",
     "typescript": "^3.9.6"
   },
   "scripts": {
