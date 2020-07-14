@@ -99,7 +99,7 @@ function LoginForm() {
   }, [username, password]);
 
   return (
-    <React.Fragment>
+    <>
       <form className={classes.container} noValidate autoComplete="off">
         <Card className={classes.card}>
           <CardHeader className={classes.header} title="Login App" />
@@ -141,7 +141,7 @@ function LoginForm() {
           </CardActions>
         </Card>
       </form>
-    </React.Fragment>
+    </>
   );
 }
 
