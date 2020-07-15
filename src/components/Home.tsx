@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React from 'react';
 import {
   Heading,
   Anchor,
@@ -9,7 +9,6 @@ import {
   Menu,
   ResponsiveContext,
 } from 'grommet';
-import { grommet } from 'grommet/themes';
 
 function Home() {
   return (
