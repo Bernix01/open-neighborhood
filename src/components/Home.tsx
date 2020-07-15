@@ -1,14 +1,5 @@
 import React from 'react';
-import {
-  Heading,
-  Anchor,
-  Box,
-  Grommet,
-  Header,
-  Nav,
-  Menu,
-  ResponsiveContext,
-} from 'grommet';
+import { Heading, Anchor, Box, Grommet, Header, Nav, Menu } from 'grommet';
 
 function Home() {
   return (
