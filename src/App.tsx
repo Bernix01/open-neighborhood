@@ -5,11 +5,12 @@ import './App.css';
 import PostsComponent from './components/posts';
 import { client } from './GraphQLClient';
 import Login from './components/LoginForm';
+import Home from './components/Home';
 
 function App() {
   return (
     <ClientContext.Provider value={client}>
-      <Login />
+      <Home />
     </ClientContext.Provider>
   );
 }
