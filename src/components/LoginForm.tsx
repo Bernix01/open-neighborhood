@@ -7,9 +7,11 @@ import {
   FormField,
   TextInput,
   Button,
+  Image,
   ThemeType,
 } from 'grommet';
-import { Home, MailOption, Lock, LinkNext } from 'grommet-icons';
+import { MailOption, Lock, LinkNext } from 'grommet-icons';
+import { useMutation } from 'graphql-hooks';
 
 const theme: ThemeType = {
   global: {
@@ -25,7 +27,24 @@ const theme: ThemeType = {
     },
   },
 };
+
+const LOGIN_QUERY = `query GetPosts {
+    posts {
+      title
+      author
+    }
+  }`;
+
+type LoginResponse = {
+  token: string;
+};
+
 export default () => {
+  const [
+    login,
+    { loading: mutationLoading, error: mutationError },
+  ] = useMutation<LoginResponse>(LOGIN_QUERY);
+
   return (
     <Grommet full theme={theme}>
       <Main
@@ -36,21 +55,26 @@ export default () => {
         direction="column"
         align="center"
       >
-        <Home size="large" color="brand" />
-        <Heading level="1" textAlign="center" color="brand">
-          LA ALAMEDA
-        </Heading>
+        <Image
+          src={`${process.env.PUBLIC_URL}/img/logo.png`}
+          fill="horizontal"
+          fit="contain"
+          style={{ maxHeight: '220px' }}
+        />
         <Heading level="3" textAlign="center">
           Iniciar sesión
         </Heading>
-        <Form>
-          <FormField label="Correo" required>
-            <TextInput
-              icon={<MailOption />}
-              type="text"
-              placeholder="email@ejemplo.com"
-            />
-          </FormField>
+        <Form
+          onSubmit={(event: React.FormEvent) => {
+            event.preventDefault();
+            console.log(
+              'onSubmit',
+              (event as any).value,
+              (event as any).touched
+            );
+          }}
+        >
+          <FormField label="Correo" required />
           <FormField label="Contraseña" required>
             <TextInput icon={<Lock />} type="password" placeholder="****" />
           </FormField>
