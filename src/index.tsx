@@ -1,17 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-if (process.env.NODE_ENV === 'development') {
-  // eslint-disable-next-line global-require
-  const worker = require('./mocks/browser');
-  worker.default.start();
-}
+// if (process.env.NODE_ENV === 'development') {
+//   // eslint-disable-next-line global-require
+//   const worker = require('./mocks/browser');
+//   worker.default.start();
+// }
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <App />
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
