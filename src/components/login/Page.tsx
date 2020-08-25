@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   Grommet,
   Main,
@@ -11,7 +11,7 @@ import {
   ThemeType,
 } from 'grommet';
 import { Lock, LinkNext } from 'grommet-icons';
-import { useMutation, ClientContext } from 'graphql-hooks';
+import { useMutation } from 'graphql-hooks';
 import { useForm } from 'react-hook-form';
 import { login } from 'src/Auth';
 
@@ -63,7 +63,6 @@ export default () => {
     doLogin,
     { loading: mutationLoading, error: mutationError },
   ] = useMutation<LoginResponse, LoginVariables, LoginError>(LOGIN_QUERY);
-  const client = useContext(ClientContext);
 
   const onSubmit = handleSubmit(async ({ user, password }) => {
     const { data, error } = await doLogin({ variables: { user, password } });

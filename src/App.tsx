@@ -9,7 +9,6 @@ import { useAuth } from './Auth';
 
 function App() {
   const [logged] = useAuth();
-  console.log(`loggeddd ${logged}`);
 
   return (
     <ClientContext.Provider value={client}>
