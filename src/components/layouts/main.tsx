@@ -1,4 +1,4 @@
-import React, { useRef, useState, Children } from 'react';
+import React, { useRef, useState } from 'react';
 
 import {
   Avatar,
@@ -45,14 +45,22 @@ const iconsMap = (color: string) => [
   <Calculator key="2" color={color} />,
 ];
 
-const SidebarButton = ({
-  iconName,
+const SidebarButtonIcon: React.FC<{ hover: boolean; index: number }> = ({
+  hover,
   index,
-}: {
+}) => {
+  return (
+    <Box pad={{ vertical: 'small' }} align="center">
+      {iconsMap(hover ? 'black' : 'white')[index]}
+    </Box>
+  );
+};
+
+const SidebarButton: React.FC<{
   iconName: string;
   index: number;
-}) => {
-  const [over, setOver] = useState<boolean>();
+}> = ({ iconName, index }) => {
+  const [over, setOver] = useState<boolean>(false);
   const tooltipColor = { color: 'accent-1', opacity: 0.9 };
 
   const ref = useRef<HTMLButtonElement>(null);
@@ -67,13 +75,7 @@ const SidebarButton = ({
         hoverIndicator={tooltipColor}
         plain
       >
-        {({ hover }: { hover: boolean }) => {
-          return (
-            <Box pad={{ vertical: 'small' }} align="center">
-              {iconsMap(hover ? 'black' : 'white')[index]}
-            </Box>
-          );
-        }}
+        <SidebarButtonIcon hover={over} index={index} />
       </Button>
       {ref.current && over && (
         <Drop align={{ left: 'right' }} target={ref.current} plain>
