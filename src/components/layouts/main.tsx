@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, MouseEventHandler } from 'react';
 
 import {
   Avatar,
@@ -14,7 +14,15 @@ import {
   Heading,
 } from 'grommet';
 
-import { Analytics, Calculator, Home, Stakeholder } from 'grommet-icons';
+import {
+  Analytics,
+  Calculator,
+  Home,
+  Stakeholder,
+  Edit,
+  Trash,
+  Add,
+} from 'grommet-icons';
 import { Link, useRouteMatch } from 'react-router-dom';
 
 const src = '//s.gravatar.com/avatar/b7fb138d53ba0f573212ccce38a7c43b?s=80';
@@ -110,18 +118,28 @@ const routes = [
   { icon: 'Stakeholder', title: 'Residentes', to: '/residents' },
   { icon: 'Calculator', title: 'Alícuotas', to: '/' },
 ];
-const DashboardLayout: React.FunctionComponent = ({ children }) => (
+
+interface Action {
+  type: 'add' | 'delete' | 'edit';
+  onClick?: MouseEventHandler;
+  to?: string;
+}
+
+const DashboardLayout: React.FunctionComponent<{ actions?: Action[] }> = ({
+  children,
+  actions,
+}) => (
   <Grommet theme={grommet} full>
     <Grid
       columns={['auto', 'flex']}
-      rows={['xxsmall', 'flex']}
+      rows={['auto', 'flex']}
       areas={[
         { name: 'nav', start: [1, 0], end: [1, 0] },
         { name: 'sidebar', start: [0, 0], end: [0, 1] },
         { name: 'main', start: [1, 1], end: [1, 1] },
       ]}
-      gap="xsmall"
-      pad="small"
+      gap="small"
+      pad="xsmall"
       fill="vertical"
     >
       <Sidebar
@@ -144,9 +162,7 @@ const DashboardLayout: React.FunctionComponent = ({ children }) => (
           ))}
         </Nav>
       </Sidebar>
-      <Box align="center" justify="center" gridArea="main">
-        {children}
-      </Box>
+      <Box gridArea="main">{children}</Box>
       <Header
         align="center"
         direction="row"
@@ -158,9 +174,39 @@ const DashboardLayout: React.FunctionComponent = ({ children }) => (
         <Heading level="2" size="medium" textAlign="start" color="black">
           Urbanización La alameda
         </Heading>
+        <Box direction="row-responsive" justify="end" align="end">
+          {actions &&
+            actions.map((action) => {
+              if (action.to) {
+                return <Link to={action.to}>{getActionComponent(action)}</Link>;
+              }
+              return getActionComponent(action);
+            })}
+        </Box>
       </Header>
     </Grid>
   </Grommet>
 );
+
+function getActionComponent(action: Action) {
+  switch (action.type) {
+    case 'edit':
+      return <Button key={action.type} label="editar" icon={<Edit />} plain />;
+    case 'delete':
+      return <Button label="borrar" key={action.type} icon={<Trash />} plain />;
+    case 'add':
+      return (
+        <Button
+          label="agregar"
+          onClick={action.onClick}
+          key={action.type}
+          icon={<Add />}
+          plain
+        />
+      );
+    default:
+      return <span>unsuported action</span>;
+  }
+}
 
 export default DashboardLayout;
