@@ -11,6 +11,7 @@ import { client } from './GraphQLClient';
 import Login from './components/login/Page';
 import Home from './components/HomePage';
 import { useAuth } from './Auth';
+import NotFound from './components/NotFound';
 
 function App() {
   const [logged] = useAuth();
@@ -21,7 +22,7 @@ function App() {
         <Switch>
           {!logged && (
             <>
-              <Route path="/login">
+              <Route exact path="/login">
                 <Login />
               </Route>
               <Redirect to="/login" />
@@ -29,10 +30,10 @@ function App() {
           )}
           {logged && (
             <>
-              <Route path="/">
+              <Route exact path="/">
                 <Home />
               </Route>
-              <Redirect to="/" />
+              <Route component={NotFound} />
             </>
           )}
         </Switch>
