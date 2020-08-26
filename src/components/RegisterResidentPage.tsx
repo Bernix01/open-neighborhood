@@ -7,7 +7,6 @@ import {
   FormField,
   TextInput,
   Button,
-  Image,
   ThemeType,
   DateInput,
 } from 'grommet';
