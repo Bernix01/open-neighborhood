@@ -9,8 +9,9 @@ import {
 } from 'react-router-dom';
 import { client } from './GraphQLClient';
 import Login from './components/login/Page';
-import Home from './components/Home';
+import Home from './components/HomePage';
 import { useAuth } from './Auth';
+import NotFound from './components/NotFound';
 import RegisterResident from './components/RegisterResidentPage';
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
         <Switch>
           {!logged && (
             <>
-              <Route path="/login">
+              <Route exact path="/login">
                 <Login />
               </Route>
               <Redirect to="/login" />
@@ -30,16 +31,16 @@ function App() {
           )}
           {logged && (
             <>
-              <Route path="/">
-                <Home />
-              </Route>
-              <Route path="/residents">
+              <Route exact path="/">
                 <Home />
               </Route>
               <Route path="/residents/register">
                 <RegisterResident />
               </Route>
-              <Redirect to="/" />
+              <Route path="/residents">
+                <Home />
+              </Route>
+              <Route component={NotFound} />
             </>
           )}
         </Switch>
