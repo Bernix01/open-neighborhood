@@ -11,6 +11,7 @@ import { client } from './GraphQLClient';
 import Login from './components/login/Page';
 import Home from './components/Home';
 import { useAuth } from './Auth';
+import RegisterResident from './components/RegisterResidentPage';
 
 function App() {
   const [logged] = useAuth();
@@ -31,6 +32,12 @@ function App() {
             <>
               <Route path="/">
                 <Home />
+              </Route>
+              <Route path="/residents">
+                <Home />
+              </Route>
+              <Route path="/residents/register">
+                <RegisterResident />
               </Route>
               <Redirect to="/" />
             </>
