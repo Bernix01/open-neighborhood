@@ -15,6 +15,7 @@ import {
 } from 'grommet';
 
 import { Analytics, Calculator, Home, Stakeholder } from 'grommet-icons';
+import { Link, useRouteMatch } from 'react-router-dom';
 
 const src = '//s.gravatar.com/avatar/b7fb138d53ba0f573212ccce38a7c43b?s=80';
 
@@ -57,43 +58,58 @@ const SidebarButtonIcon: React.FC<{ hover: boolean; index: number }> = ({
 };
 
 const SidebarButton: React.FC<{
-  iconName: string;
+  title: string;
+  to: string;
   index: number;
-}> = ({ iconName, index }) => {
+}> = ({ title, index, to }) => {
+  const match = useRouteMatch({
+    path: to,
+    strict: true,
+    exact: to === '/',
+    sensitive: true,
+  });
   const [over, setOver] = useState<boolean>(false);
   const tooltipColor = { color: 'accent-1', opacity: 0.9 };
 
   const ref = useRef<HTMLButtonElement>(null);
   return (
-    <Box fill="horizontal">
-      <Button
-        ref={ref}
-        onMouseOver={() => setOver(true)}
-        onMouseLeave={() => setOver(false)}
-        onFocus={() => setOver(false)}
-        onBlur={() => setOver(false)}
-        hoverIndicator={tooltipColor}
-        plain
-      >
-        <SidebarButtonIcon hover={over} index={index} />
-      </Button>
-      {ref.current && over && (
-        <Drop align={{ left: 'right' }} target={ref.current} plain>
-          <Box
-            animation="slideRight"
-            margin="xsmall"
-            pad="small"
-            background={tooltipColor}
-            round={{ size: 'medium', corner: 'right' }}
-          >
-            {iconName}
-          </Box>
-        </Drop>
-      )}
-    </Box>
+    <Link to={to}>
+      <Box fill="horizontal">
+        <Button
+          ref={ref}
+          onMouseOver={() => setOver(true)}
+          onMouseLeave={() => setOver(false)}
+          onFocus={() => setOver(false)}
+          onBlur={() => setOver(false)}
+          hoverIndicator={tooltipColor}
+          active={match !== null}
+          plain
+        >
+          <SidebarButtonIcon hover={over} index={index} />
+        </Button>
+        {ref.current && over && (
+          <Drop align={{ left: 'right' }} target={ref.current} plain>
+            <Box
+              animation="slideRight"
+              margin="xsmall"
+              pad="small"
+              background={tooltipColor}
+              round={{ size: 'medium', corner: 'right' }}
+            >
+              {title}
+            </Box>
+          </Drop>
+        )}
+      </Box>
+    </Link>
   );
 };
 
+const routes = [
+  { icon: 'Analytics', title: 'Dashboard', to: '/' },
+  { icon: 'Stakeholder', title: 'Residentes', to: '/residents' },
+  { icon: 'Calculator', title: 'Alícuotas', to: '/' },
+];
 const DashboardLayout: React.FunctionComponent = ({ children }) => (
   <Grommet theme={grommet} full>
     <Grid
@@ -118,8 +134,13 @@ const DashboardLayout: React.FunctionComponent = ({ children }) => (
         round="medium"
       >
         <Nav>
-          {['Analytics', 'Stakeholder', 'Calculator'].map((iconName, index) => (
-            <SidebarButton key={iconName} iconName={iconName} index={index} />
+          {routes.map((route, index) => (
+            <SidebarButton
+              to={route.to}
+              key={route.title}
+              title={route.title}
+              index={index}
+            />
           ))}
         </Nav>
       </Sidebar>
@@ -134,8 +155,8 @@ const DashboardLayout: React.FunctionComponent = ({ children }) => (
         gap="medium"
         gridArea="nav"
       >
-        <Heading level="1" size="medium" textAlign="start" color="black">
-          Bienvenido a la aplicación
+        <Heading level="2" size="medium" textAlign="start" color="black">
+          Urbanización La alameda
         </Heading>
       </Header>
     </Grid>
