@@ -155,8 +155,8 @@ const DashboardLayout: React.FunctionComponent = ({ children }) => (
         gap="medium"
         gridArea="nav"
       >
-        <Heading level="1" size="medium" textAlign="start" color="black">
-          Bienvenido a la aplicación
+        <Heading level="2" size="medium" textAlign="start" color="black">
+          Urbanización La alameda
         </Heading>
       </Header>
     </Grid>
