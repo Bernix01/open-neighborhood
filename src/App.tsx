@@ -9,7 +9,7 @@ import {
 } from 'react-router-dom';
 import { client } from './GraphQLClient';
 import Login from './components/login/Page';
-import Home from './components/Home';
+import Home from './components/HomePage';
 import { useAuth } from './Auth';
 
 function App() {
