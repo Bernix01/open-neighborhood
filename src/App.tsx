@@ -9,8 +9,11 @@ import {
 } from 'react-router-dom';
 import { client } from './GraphQLClient';
 import Login from './components/login/Page';
-import Home from './components/Home';
+import Home from './components/HomePage';
 import { useAuth } from './Auth';
+import NotFound from './components/NotFound';
+import RegisterResident from './components/RegisterResidentPage';
+import ResidentPage from './components/ResidentsPage';
 
 function App() {
   const [logged] = useAuth();
@@ -18,24 +21,30 @@ function App() {
   return (
     <ClientContext.Provider value={client}>
       <Router>
-        <Switch>
-          {!logged && (
-            <>
-              <Route path="/login">
-                <Login />
-              </Route>
-              <Redirect to="/login" />
-            </>
-          )}
-          {logged && (
-            <>
-              <Route path="/">
-                <Home />
-              </Route>
-              <Redirect to="/" />
-            </>
-          )}
-        </Switch>
+        {!logged && (
+          <Switch>
+            <Route exact path="/login">
+              <Login />
+            </Route>
+            <Redirect to="/login" />
+          </Switch>
+        )}
+        {logged && (
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route exact path="/residents/register">
+              <RegisterResident />
+            </Route>
+            <Route exact path="/residents">
+              <ResidentPage />
+            </Route>
+            <Route path="*">
+              <NotFound />
+            </Route>
+          </Switch>
+        )}
       </Router>
     </ClientContext.Provider>
   );
