@@ -8,5 +8,14 @@
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
       "source.fixAll.eslint": true
-    }
-  }
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "jest.autoEnable": true,
+    "jest.showCoverageOnLoad": true,
+    "jest.enableInlineErrorMessages": true
+}
