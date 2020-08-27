@@ -46,7 +46,7 @@ export default () => {
           <DateInput format="mm/dd/yyyy" value={new Date().toISOString()} />
         </FormField>
         <FormField name="user" label="Correo" required>
-          <TextInput name="user" ref={register} />
+          <TextInput name="user" type="email" ref={register} />
         </FormField>
         <FormField
           name="password"
