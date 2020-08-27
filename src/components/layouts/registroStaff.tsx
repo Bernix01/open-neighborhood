@@ -41,9 +41,10 @@ type RegisterError = {
 };
 
 type RegisterVariables = {
-  id_card: string;
   name: string;
   brith: string;
+  telefono: string;
+  address: string;
   user: string;
   password: string;
 };
@@ -62,19 +63,37 @@ export default () => {
         align="center"
       >
         <Heading level="3" textAlign="center">
-          Registro Residente
+          Registro Staff
         </Heading>
         <Form>
-          <FormField name="id_card" label="Card" required>
-            <TextInput name="id_card" ref={register} />
-          </FormField>
-          <FormField name="name" label="Name" required>
-            <TextInput name="name" ref={register} />
-          </FormField>
-          <FormField name="birth" label="Birth" required>
+          <FormField
+            name="birth"
+            label="Birth"
+            placeholder="Fecha de Nacimiento"
+            required
+          >
             <DateInput format="mm/dd/yyyy" value={new Date().toISOString()} />
           </FormField>
-          <FormField name="user" label="Correo" required>
+          <FormField
+            name="telefono"
+            label="Telefono"
+            placeholder="Telefono"
+            required
+          >
+            <TextInput name="telefono" pattern="[0-9]{10}" ref={register} />
+          </FormField>
+          <FormField
+            name="id_card"
+            label="Address"
+            placeholder="Direccion"
+            required
+          >
+            <TextInput name="address" ref={register} />
+          </FormField>
+          <FormField name="name" label="Name" placeholder="Nombre" required>
+            <TextInput name="name" ref={register} />
+          </FormField>
+          <FormField name="user" label="Correo" placeholder="Correo" required>
             <TextInput name="user" type="email" ref={register} />
           </FormField>
           <FormField
