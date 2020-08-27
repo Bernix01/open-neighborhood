@@ -58,44 +58,6 @@ const SidebarButtonIcon: React.FC<{ hover: boolean; index: number }> = ({
   );
 };
 
-const SidebarButton: React.FC<{
-  iconName: string;
-  index: number;
-}> = ({ iconName, index }) => {
-  const [over, setOver] = useState<boolean>(false);
-  const tooltipColor = { color: 'accent-1', opacity: 0.9 };
-
-  const ref = useRef<HTMLButtonElement>(null);
-  return (
-    <Box fill="horizontal">
-      <Button
-        ref={ref}
-        onMouseOver={() => setOver(true)}
-        onMouseLeave={() => setOver(false)}
-        onFocus={() => setOver(false)}
-        onBlur={() => setOver(false)}
-        hoverIndicator={tooltipColor}
-        plain
-      >
-        <SidebarButtonIcon hover={over} index={index} />
-      </Button>
-      {ref.current && over && (
-        <Drop align={{ left: 'right' }} target={ref.current} plain>
-          <Box
-            animation="slideRight"
-            margin="xsmall"
-            pad="small"
-            background={tooltipColor}
-            round={{ size: 'medium', corner: 'right' }}
-          >
-            {iconName}
-          </Box>
-        </Drop>
-      )}
-    </Box>
-  );
-};
-
 const amountFormatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD',
