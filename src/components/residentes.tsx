@@ -20,6 +20,8 @@ import { Analytics, Calculator, Home, Stakeholder } from 'grommet-icons';
 
 import DashboardLayout from './layouts/main';
 
+export declare type AlignType = 'left' | 'center' | 'right';
+
 export default () => {
   const src = '//s.gravatar.com/avatar/b7fb138d53ba0f573212ccce38a7c43b?s=80';
 
@@ -39,13 +41,13 @@ export default () => {
   const columns = [
     {
       property: 'name',
-      header: <Text>Nombbre</Text>,
+      header: 'Name',
       primary: true,
       footer: 'Total',
     },
     {
-      property: 'ubicacion',
-      header: 'Ubicacion',
+      property: 'location',
+      header: 'location',
     },
     {
       property: 'date',
@@ -57,7 +59,7 @@ export default () => {
     {
       property: 'percent',
       header: 'Percent Complete',
-      render: (datum: { percent: any }) => (
+      render: (datum: { percent: number }) => (
         <Box pad={{ vertical: 'xsmall' }}>
           <Meter
             values={[{ value: datum.percent }]}
@@ -88,49 +90,49 @@ export default () => {
     },
     {
       name: 'Bryan',
-      ubicacion: 'Mz8968-V8',
+      location: 'Mz8968-V8',
       date: '2018-06-10',
       percent: 30,
       paid: 1234,
     },
     {
       name: 'Chris',
-      ubicacion: 'Mz8968-V8',
+      location: 'Mz8968-V8',
       date: '2018-06-09',
       percent: 40,
       paid: 2345,
     },
     {
       name: 'Eric',
-      ubicacion: 'Mz8968-V8',
+      location: 'Mz8968-V8',
       date: '2018-06-11',
       percent: 80,
       paid: 3456,
     },
     {
       name: 'Doug',
-      ubicacion: 'Mz8968-V8',
+      location: 'Mz8968-V8',
       date: '2018-06-10',
       percent: 60,
       paid: 1234,
     },
     {
       name: 'Jet',
-      ubicacion: 'Mz8968-V8',
+      location: 'Mz8968-V8',
       date: '2018-06-09',
       percent: 40,
       paid: 3456,
     },
     {
       name: 'Michael',
-      ubicacion: 'Mz8968-V8',
+      location: 'Mz8968-V8',
       date: '2018-06-11',
       percent: 50,
       paid: 1234,
     },
     {
       name: 'Tracy',
-      ubicacion: 'Mz8968-V8',
+      location: 'Mz8968-V8',
       date: '2018-06-10',
       percent: 10,
       paid: 2345,
@@ -142,15 +144,7 @@ export default () => {
       <Heading level="3">Residentes</Heading>
       <Grommet theme={grommet}>
         <Box align="center" pad="large">
-          <DataTable
-            columns={columns.map((c) => ({
-              ...c,
-              search: c.property === 'name' || c.property === 'ubicacion',
-            }))}
-            data={DATA}
-            sortable
-            resizeable
-          />
+          <DataTable columns={columns} data={DATA} />
         </Box>
       </Grommet>
     </DashboardLayout>
