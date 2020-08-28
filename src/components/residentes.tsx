@@ -14,6 +14,7 @@ import {
   DataTable,
   Meter,
   Text,
+  ColumnConfig,
 } from 'grommet';
 
 import { Analytics, Calculator, Home, Stakeholder } from 'grommet-icons';
@@ -38,7 +39,11 @@ export default () => {
     minimumFractionDigits: 2,
   });
 
-  const columns = [
+  const columns: ColumnConfig<{
+    date?: string | number | Date;
+    percent?: number;
+    paid?: number;
+  }>[] = [
     {
       property: 'name',
       header: 'Name',
@@ -52,17 +57,17 @@ export default () => {
     {
       property: 'date',
       header: 'Date',
-      render: (datum: { date: string | number | Date }) =>
+      render: (datum) =>
         datum.date && new Date(datum.date).toLocaleDateString('en-US'),
       align: 'end',
     },
     {
       property: 'percent',
       header: 'Percent Complete',
-      render: (datum: { percent: number }) => (
+      render: (datum) => (
         <Box pad={{ vertical: 'xsmall' }}>
           <Meter
-            values={[{ value: datum.percent }]}
+            values={[{ value: datum.percent! }]}
             thickness="small"
             size="small"
           />
@@ -72,8 +77,7 @@ export default () => {
     {
       property: 'paid',
       header: 'Paid',
-      render: (datum: { paid: number }) =>
-        amountFormatter.format(datum.paid / 100),
+      render: (datum) => amountFormatter.format(datum.paid! / 100),
       align: 'end',
       aggregate: 'sum',
       footer: { aggregate: true },
