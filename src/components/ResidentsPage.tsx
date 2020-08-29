@@ -9,7 +9,7 @@ import {
   Heading,
   Box,
 } from 'grommet';
-import { Favorite, ShareOption, Star } from 'grommet-icons';
+import { ShareOption, Star } from 'grommet-icons';
 import DashboardLayout from './layouts/main';
 
 const ResidentPage: React.FC = () => {
