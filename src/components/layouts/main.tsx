@@ -181,7 +181,11 @@ const DashboardLayout: React.FunctionComponent<{ actions?: Action[] }> = ({
           {actions &&
             actions.map((action) => {
               if (action.to) {
-                return <Link to={action.to}>{getActionComponent(action)}</Link>;
+                return (
+                  <Link to={action.to} key={action.type}>
+                    {getActionComponent(action)}
+                  </Link>
+                );
               }
               return getActionComponent(action);
             })}
