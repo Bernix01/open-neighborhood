@@ -14,6 +14,13 @@ import { Lock, LinkNext } from 'grommet-icons';
 import { useMutation } from 'graphql-hooks';
 import { useForm } from 'react-hook-form';
 import { login } from 'src/Auth';
+import { print } from 'graphql';
+import { loader } from 'graphql.macro';
+import {
+  LoginMutationVariables,
+  LoginMutation,
+  ObtainJsonWebToken,
+} from 'src/generated/graphql';
 
 const theme: ThemeType = {
   global: {
@@ -30,13 +37,7 @@ const theme: ThemeType = {
   },
 };
 
-const LOGIN_QUERY = `mutation login($user: String!, $password: String!) {
-    tokenAuth(username: $user, password: $password) {
-      token
-      payload
-      refreshExpiresIn
-    }
-  }`;
+const LOGIN_QUERY = loader('./login.graphql');
 
 type FormData = {
   user: string;
@@ -62,7 +63,9 @@ export default () => {
   const [
     doLogin,
     { loading: mutationLoading, error: mutationError },
-  ] = useMutation<LoginResponse, LoginVariables, LoginError>(LOGIN_QUERY);
+  ] = useMutation<ObtainJsonWebToken, LoginMutationVariables, LoginError>(
+    print(LOGIN_QUERY)
+  );
 
   const onSubmit = handleSubmit(async ({ user, password }) => {
     const { data, error } = await doLogin({ variables: { user, password } });
