@@ -14,6 +14,7 @@ import { useAuth } from './Auth';
 import NotFound from './components/NotFound';
 import RegisterResident from './components/RegisterResidentPage';
 import ResidentPage from './components/ResidentsPage';
+import RegisterStaff from './components/RegisterStaff';
 
 function App() {
   const [logged] = useAuth();
@@ -38,6 +39,12 @@ function App() {
               <RegisterResident />
             </Route>
             <Route exact path="/residents">
+              <ResidentPage />
+            </Route>
+            <Route exact path="/staff/register">
+              <RegisterStaff />
+            </Route>
+            <Route exact path="/staff">
               <ResidentPage />
             </Route>
             <Route path="*">

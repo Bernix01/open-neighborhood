@@ -22,6 +22,7 @@ import {
   Edit,
   Trash,
   Add,
+  Lock,
 } from 'grommet-icons';
 import { Link, useRouteMatch } from 'react-router-dom';
 
@@ -52,6 +53,7 @@ const iconsMap = (color: string) => [
   <Analytics key="0" color={color} />,
   <Stakeholder key="1" color={color} />,
   <Calculator key="2" color={color} />,
+  <Lock key="3" color={color} />,
 ];
 
 const SidebarButtonIcon: React.FC<{ hover: boolean; index: number }> = ({
@@ -116,7 +118,8 @@ const SidebarButton: React.FC<{
 const routes = [
   { icon: 'Analytics', title: 'Dashboard', to: '/' },
   { icon: 'Stakeholder', title: 'Residentes', to: '/residents' },
-  { icon: 'Calculator', title: 'Alícuotas', to: '/' },
+  { icon: 'Calculator', title: 'Alícuotas', to: '/alicuots' },
+  { icon: 'Lock', title: 'Staff', to: '/staff' },
 ];
 
 interface Action {
