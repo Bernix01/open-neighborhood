@@ -7,7 +7,6 @@ import {
   Button,
   Text,
   DataTable,
-  Meter,
   ColumnConfig,
   Select,
 } from 'grommet';

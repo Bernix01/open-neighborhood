@@ -21,7 +21,6 @@ config:
     JSON: '{ [key: string]: any }'
     GenericScalar: 'string | boolean | number | Array<string | boolean | number> | object'
 hooks:
-  afterAllFileWrite:
-    - prettier --write
   afterOneFileWrite:
+    - prettier --write
     - eslint --fix --quiet
