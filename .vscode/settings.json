@@ -1,12 +1,21 @@
 {
     "files.associations": {
-      "*.jsx": "javascriptreact",
-      "*.tsx": "typescriptreact"
+        "*.jsx": "javascriptreact",
+        "*.tsx": "typescriptreact"
     },
     "editor.insertSpaces": true,
     "editor.detectIndentation": false,
-    "editor.formatOnSave": true,
+    "editor.formatOnSave": false,
     "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": true
-    }
-  }
+        "source.fixAll.eslint": true
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "jest.autoEnable": true,
+    "jest.showCoverageOnLoad": true,
+    "jest.enableInlineErrorMessages": true
+}

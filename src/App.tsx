@@ -12,6 +12,11 @@ import Login from './components/login/Page';
 import Home from './components/HomePage';
 import { useAuth } from './Auth';
 import NotFound from './components/NotFound';
+import RegisterResident from './components/RegisterResidentPage';
+import ResidentPage from './components/ResidentsPage';
+import RegisterStaff from './components/RegisterStaff';
+import StaffPage from './components/StaffPage';
+import RegisterPayment from './components/RegisterPayment';
 
 function App() {
   const [logged] = useAuth();
@@ -19,24 +24,39 @@ function App() {
   return (
     <ClientContext.Provider value={client}>
       <Router>
-        <Switch>
-          {!logged && (
-            <>
-              <Route exact path="/login">
-                <Login />
-              </Route>
-              <Redirect to="/login" />
-            </>
-          )}
-          {logged && (
-            <>
-              <Route exact path="/">
-                <Home />
-              </Route>
-              <Route component={NotFound} />
-            </>
-          )}
-        </Switch>
+        {!logged && (
+          <Switch>
+            <Route exact path="/login">
+              <Login />
+            </Route>
+            <Redirect to="/login" />
+          </Switch>
+        )}
+        {logged && (
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route exact path="/residents/register">
+              <RegisterResident />
+            </Route>
+            <Route exact path="/residents">
+              <ResidentPage />
+            </Route>
+            <Route exact path="/staff/register">
+              <RegisterStaff />
+            </Route>
+            <Route exact path="/staff">
+              <StaffPage />
+            </Route>
+            <Route exact path="/alicuots">
+              <RegisterPayment />
+            </Route>
+            <Route path="*">
+              <NotFound />
+            </Route>
+          </Switch>
+        )}
       </Router>
     </ClientContext.Provider>
   );

@@ -1,0 +1,7 @@
+mutation login($user: String!, $password: String!) {
+  tokenAuth(username: $user, password: $password) {
+    token
+    payload
+    refreshExpiresIn
+  }
+}
