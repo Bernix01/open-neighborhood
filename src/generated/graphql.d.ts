@@ -29,11 +29,11 @@ export type Scalars = {
    * String, Boolean, Int, Float, List or Object.
    */
   GenericScalar:
-    | string
-    | boolean
-    | number
-    | Array<string | boolean | number>
-    | object;
+  | string
+  | boolean
+  | number
+  | Array<string | boolean | number>
+  | object;
 };
 
 /** The schema queries  */
@@ -198,10 +198,10 @@ export type LoginMutationVariables = Exact<{
 
 export type LoginMutation = { __typename?: 'Mutation' } & {
   tokenAuth?: Maybe<
-    { __typename?: 'ObtainJSONWebToken' } & Pick<
-      ObtainJsonWebToken,
-      'token' | 'payload' | 'refreshExpiresIn'
-    >
+  { __typename?: 'ObtainJSONWebToken' } & Pick<
+  ObtainJsonWebToken,
+  'token' | 'payload' | 'refreshExpiresIn'
+  >
   >;
 };
 
