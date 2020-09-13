@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  Box,
-  grommet,
-  Grommet,
-  Heading,
-  DataTable,
-  Meter,
-  ColumnConfig,
-} from 'grommet';
+import { Box, grommet, Grommet, Heading, DataTable } from 'grommet';
 
 import { useRouteMatch } from 'react-router-dom';
 import DashboardLayout from './layouts/main';

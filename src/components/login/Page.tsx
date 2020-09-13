@@ -18,7 +18,6 @@ import { print } from 'graphql';
 import { loader } from 'graphql.macro';
 import {
   LoginMutationVariables,
-  LoginMutation,
   ObtainJsonWebToken,
 } from 'src/generated/graphql';
 

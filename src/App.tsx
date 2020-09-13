@@ -15,6 +15,8 @@ import NotFound from './components/NotFound';
 import RegisterResident from './components/RegisterResidentPage';
 import ResidentPage from './components/ResidentsPage';
 import RegisterStaff from './components/RegisterStaff';
+import StaffPage from './components/StaffPage';
+import RegisterPayment from './components/RegisterPayment';
 
 function App() {
   const [logged] = useAuth();
@@ -45,7 +47,10 @@ function App() {
               <RegisterStaff />
             </Route>
             <Route exact path="/staff">
-              <ResidentPage />
+              <StaffPage />
+            </Route>
+            <Route exact path="/alicuots">
+              <RegisterPayment />
             </Route>
             <Route path="*">
               <NotFound />
